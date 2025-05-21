@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import { getTrendingMovies } from "../services/movieService";
-import MovieCard from "../components/MovieCard";
+// import MovieCard from "../components/MovieCard";
+import MovieList from "../components/MovieList";
 function Carousel() {
   const [current, setCurrentSlide] = useState(0);
   const [movies, setMovies] = useState([]);
@@ -110,7 +111,7 @@ export default function Home() {
          <Carousel />
       </div>
      
-      <MovieCard />
+      <MovieList />
     </div>
   );
 }
