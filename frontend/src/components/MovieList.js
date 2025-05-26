@@ -7,6 +7,7 @@ import {
   getNowPlayingMovies,
 } from '../services/movieService.js';
 
+
 export default function MovieList() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -17,7 +18,7 @@ export default function MovieList() {
     const fetchPopularMovies = async () => {
       try {
         const response = await getPopularMovies();
-        console.log("popular",response)
+        
         setPopularMovies(response.data.results || []);
       } catch (error) {
         console.error('Error fetching popular movies:', error);
@@ -27,7 +28,7 @@ export default function MovieList() {
     const fetchTopRatedMovies = async () => {
       try {
         const response = await getTopRatedMovies(); 
-        console.log("top-rated",response)
+        
         setTopRatedMovies(response.data.results || []);
       } catch (error) {
         console.error('Error fetching top rated movies:', error);
@@ -37,7 +38,7 @@ export default function MovieList() {
     const fetchUpcomingMovies = async () => {
       try {
         const response = await getUpcomingMovies(); 
-        console.log("upcoming",response)
+       
         setUpcomingMovies(response.data.results || []);
       } catch (error) {
         console.error('Error fetching upcoming movies:', error);
@@ -47,26 +48,30 @@ export default function MovieList() {
     const fetchNowPlayingMovies = async () => {
       try {
         const response = await getNowPlayingMovies();
-        console.log("now playing",response)
+        
         setNowPlayingMovies(response.data.results || []);
       } catch (error) {
         console.error('Error fetching now playing movies:', error);
       }
     };
 
-    // Fetch all categories
+    
     fetchPopularMovies();
     fetchTopRatedMovies(); 
     fetchUpcomingMovies(); 
     fetchNowPlayingMovies();
   }, []);
-
+  const movieArray = [...popularMovies,...topRatedMovies,...upcomingMovies,...nowPlayingMovies]
+//  if(!popularMovies.length && topRatedMovies.length && upcomingMovies.length && nowPlayingMovies.length){
+//     return <div>Loading..</div>
+//  }
   return (
     <div>
       <CategoryRow title="Popular Movies" movies={popularMovies} />
       <CategoryRow title="Top Rated Movies" movies={topRatedMovies} />
       <CategoryRow title="Upcoming Movies" movies={upcomingMovies} />
       <CategoryRow title="Now Playing Movies" movies={nowPlayingMovies} />
+    
     </div>
   );
 }

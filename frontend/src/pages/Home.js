@@ -106,7 +106,7 @@ function Carousel() {
 
 export default function Home() {
   return (
-    <div className="w-dvw bg-black p-6 overflow-hidden scrollbar-hide">
+    <div className="w-dvw bg-black p-6 overflow-hidden scrollbar-hide ">
       <div className="flex justify-start m-12">
          <Carousel />
       </div>

@@ -1,21 +1,21 @@
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/MovieDetails';
-import Contact from './pages/SearchResults';
-
+import WatchList from './components/WatchList'
+import MovieDetailsPage from './pages/MovieDetails';
+import { SavedProvider } from './context';
 export default function App(){
   return(
-    <div className='bg-black '>
-          <Router>
+    <div className='bg-black w-screen overflow-hidden scrollbar-x-hide'>
+    <Router>
       <Navbar />
-      {/* <Home /> */}
+     <SavedProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        
+        <Route path="/moviedetails/:id" element={<MovieDetailsPage/>}/>
+        <Route path="/watchlist" element={<WatchList/>}/>
       </Routes>
+      </SavedProvider>
     </Router>
 
     </div>
