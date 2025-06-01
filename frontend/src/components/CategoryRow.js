@@ -26,7 +26,7 @@ export default function CategoryRow({title,movies}){
         <div className="relative">
             <h2 className="text-2xl font-bold mb-2 text-white relative left-3 flex gap-3"><span className="border-2 border-yellow-400 rounded-lg"></span>{title}</h2>
             
-            <div className="flex gap-4 w-screen overflow-x-scroll no-scrollbar p-4 bg-black rounded-2xl h-96 box-border " ref={rowRef}>
+            <div className="flex gap-4 w-screen overflow-x-scroll no-scrollbar p-4 bg-black rounded-2xl h-[498px] box-border " ref={rowRef}>
                 
                 {
                    

@@ -6,6 +6,7 @@ import {
   getUpcomingMovies,
   getNowPlayingMovies,
 } from '../services/movieService.js';
+import Loader from './Loader.js';
 
 
 export default function MovieList() {
@@ -65,6 +66,9 @@ export default function MovieList() {
 //  if(!popularMovies.length && topRatedMovies.length && upcomingMovies.length && nowPlayingMovies.length){
 //     return <div>Loading..</div>
 //  }
+if(!movieArray.length){
+  return <Loader/>
+}
   return (
     <div>
       <CategoryRow title="Popular Movies" movies={popularMovies} />

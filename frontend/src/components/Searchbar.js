@@ -11,7 +11,7 @@ export default function SearchBar(){
     const debounce = setTimeout(() => {
       if (searchTerm.trim()) {
         searchMovies(searchTerm)
-          .then(res => setSearchResults(res.data.results.slice(0, 6)))
+          .then(res => setSearchResults(res?.data?.results?.slice(0, 6) || []))
           .catch(err => console.error(err));
       } else {
         setSearchResults([]);
@@ -27,31 +27,32 @@ export default function SearchBar(){
     navigate(`/moviedetails/${movie.id}`);
   };
       return(
-        <div>
-            <div>
-                <div className="relative left-40">
-                    <div>
-                    <input type="text" placeholder="Search IMDB" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-96 h-10  rounded-lg bg-white text-black p-2 focus:border-yellow-300 focus:border-2 focus:outline-none" />
-                        {searchResults.length > 0 && (
-                                <ul  className="absolute bg-black border border-gray-300 w-full list-none m-0 p-0 z-[1000] shadow-md">
-                                {searchResults.map(movie => (
-                                    <li
-                                    key={movie.id}
-                                    onClick={() => handleSelect(movie)}
-                                    className="p-2 cursor-pointer bg-black relative z-[1000] hover:bg-slate-300 text-white hover:text-black"
-                                    >
-                                    {movie.title}
-                                    </li>
-                                ))}
-                                </ul>
-                            )}
-                    </div>
-                
-                 </div>
-
-               
-            </div>
-            
-        </div>
-    )
+<div className="w-full sm:w-auto mx-2 sm:mx-0">
+  <div className="relative">
+    <input 
+      type="text" 
+      placeholder="Search IMDB" 
+      value={searchTerm} 
+      onChange={(e) => setSearchTerm(e.target.value)} 
+      className="w-full sm:w-full md:w-80 h-8 sm:h-9 rounded-lg bg-white text-black px-3 py-1 
+                focus:border-yellow-300 focus:border-2 focus:outline-none text-sm sm:text-base" 
+    />
+    {searchResults.length > 0 && (
+      <ul className="absolute bg-black border border-gray-300 w-full list-none mt-1 rounded-lg 
+                   overflow-hidden z-[1000] shadow-md">
+        {searchResults.map(movie => (
+          <li
+            key={movie.id}
+            onClick={() => handleSelect(movie)}
+            className="p-2 cursor-pointer hover:bg-slate-300 text-white hover:text-black 
+                      text-sm sm:text-base"
+          >
+            {movie.title}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>    
+)
 }
