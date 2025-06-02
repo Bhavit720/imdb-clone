@@ -1,4 +1,4 @@
-// src/services/movieService.js
+
 import api from './apiServices';
 
 export const getTopRatedMovies = () => api.get('/movie/top_rated');
